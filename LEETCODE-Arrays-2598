@@ -1,0 +1,17 @@
+class Solution {
+    public int findSmallestInteger(int[] nums, int value) {
+        HashMap<Integer,Integer> hash=new HashMap<>();
+        for(int num:nums)
+        {
+            int r=((num%value)+value)%value;
+            hash.put(r,hash.getOrDefault(r,0)+1);
+        }
+        int MEX=0;
+        while(hash.getOrDefault(MEX%value,0)>0)
+        {
+            hash.put(MEX%value,hash.get(MEX%value)-1);
+            MEX++;
+        }
+        return MEX;
+    }
+}
